@@ -115,9 +115,19 @@ namespace lab1
             Cursor.Current = Cursors.Default;
         }
 
+        private void niblackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = Filters.Niblack.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
+
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             this.label1.Text = this.trackBar1.Value.ToString();
         }
+
     }
 }

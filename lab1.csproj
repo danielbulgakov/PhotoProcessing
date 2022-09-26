@@ -46,16 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autocontrast.cs" />
-    <Compile Include="Average.cs" />
+    <Compile Include="lab1\Autocontrast.cs" />
+    <Compile Include="lab1\Average.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalBinarization.cs" />
-    <Compile Include="Grayscale.cs" />
+    <Compile Include="lab2\GlobalBinarization.cs" />
+    <Compile Include="lab1\Grayscale.cs" />
+    <Compile Include="lab2\Niblack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
