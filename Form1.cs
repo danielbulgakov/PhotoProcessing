@@ -105,5 +105,19 @@ namespace lab1
             this.pictureBox1.Image = Filters.Autocontrast.Execute((Bitmap)pictureBox1.Image);
             Cursor.Current = Cursors.Default;
         }
+
+        private void globalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = Filters.GlobalBinarization.Execute((Bitmap)pictureBox1.Image, this.trackBar1.Value);
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            this.label1.Text = this.trackBar1.Value.ToString();
+        }
     }
 }

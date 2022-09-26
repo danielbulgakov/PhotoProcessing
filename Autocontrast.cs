@@ -14,49 +14,47 @@ namespace Filters
             int width = sourceImage.Width;
             int height = sourceImage.Height;
 
-            Bitmap resImage = new Bitmap(width, height);
+            byte maxR = 0, maxG = 0, maxB = 0;
+            byte minR = 255, minG = 255, minB = 255;
 
-            byte maxIntensity = 0, minIntensity = 255;
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    Color Color = sourceImage.GetPixel(x, y);
+
+                    maxR = Math.Max(maxR, Color.R);
+                    maxG = Math.Max(maxG, Color.G);
+                    maxB = Math.Max(maxB, Color.B);
+
+                    minR = Math.Min(minR, Color.R);
+                    minG = Math.Min(minG, Color.G);
+                    minB = Math.Min(minB, Color.B);
+
+                }
+
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
                 {
                     Color color = sourceImage.GetPixel(x, y);
-
-                    byte intensity = (byte)(.299 * color.R + .587 * color.G + .114 * color.B);
-
-                    maxIntensity = Math.Max(maxIntensity, intensity);
-                    minIntensity = Math.Min(minIntensity, intensity);
-
+                    byte R = (byte)((color.R - minR) * ((255f) / (float)(maxR - minR)));
+                    byte G = (byte)((color.G - minG) * ((255f) / (float)(maxG - minG)));
+                    byte B = (byte)((color.B - minB) * ((255f) / (float)(maxB - minB)));
+                    sourceImage.SetPixel(x, y, Color.FromArgb(R, G, B));
                 }
 
-            for (int y = 0; y < height; y++)
-                for (int x = 0; x < width; x++)
-                {
-                    Color color = sourceImage.GetPixel(x, y);
 
-                    byte intensity = (byte)(.299 * color.R + .587 * color.G + .114 * color.B);
+            return sourceImage;
+        }
 
-                    byte newIntensity = (byte)((intensity - minIntensity) * ((255f) / (float)(maxIntensity - minIntensity)));
-                    byte R, G, B;
+        public static byte clamp(float value, float min, float max)
+        {
+            return (byte)(Math.Min(Math.Max(min, value), max));
+        }
 
-                    if (intensity == 0)
-                    {
-                        R = 0;
-                        G = 0; 
-                        B = 0;
-                    }
-                    else
-                    {
-                        R = (byte)(color.R * newIntensity / intensity);
-                        G = (byte)(color.G * newIntensity / intensity);
-                        B = (byte)(color.B * newIntensity / intensity);
-                    }
-
-                    resImage.SetPixel(x, y, Color.FromArgb(R, G, B));
-                }
-
-            return resImage;
+        public static int clamp(int value, int min, int max)
+        {
+            return (int)(Math.Min(Math.Max(min, value), max));
         }
 
 

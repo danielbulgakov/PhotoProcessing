@@ -36,10 +36,15 @@
             this.grayscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.averageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autocontrastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.бинаризацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.точечнаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отменаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -47,6 +52,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.фильтрыToolStripMenuItem,
+            this.бинаризацияToolStripMenuItem,
             this.отменаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -90,23 +96,38 @@
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
             this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
             // averageToolStripMenuItem
             // 
             this.averageToolStripMenuItem.Name = "averageToolStripMenuItem";
-            this.averageToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.averageToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
             this.averageToolStripMenuItem.Text = "Average";
             this.averageToolStripMenuItem.Click += new System.EventHandler(this.averageToolStripMenuItem_Click);
             // 
             // autocontrastToolStripMenuItem
             // 
             this.autocontrastToolStripMenuItem.Name = "autocontrastToolStripMenuItem";
-            this.autocontrastToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.autocontrastToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
             this.autocontrastToolStripMenuItem.Text = "Autocontrast";
             this.autocontrastToolStripMenuItem.Click += new System.EventHandler(this.autocontrastToolStripMenuItem_Click);
+            // 
+            // бинаризацияToolStripMenuItem
+            // 
+            this.бинаризацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.точечнаяToolStripMenuItem});
+            this.бинаризацияToolStripMenuItem.Name = "бинаризацияToolStripMenuItem";
+            this.бинаризацияToolStripMenuItem.Size = new System.Drawing.Size(115, 24);
+            this.бинаризацияToolStripMenuItem.Text = "Бинаризация";
+            // 
+            // точечнаяToolStripMenuItem
+            // 
+            this.точечнаяToolStripMenuItem.Name = "точечнаяToolStripMenuItem";
+            this.точечнаяToolStripMenuItem.Size = new System.Drawing.Size(236, 24);
+            this.точечнаяToolStripMenuItem.Text = "Точечная(Глобальная)";
+            this.точечнаяToolStripMenuItem.Click += new System.EventHandler(this.globalToolStripMenuItem_Click);
             // 
             // отменаToolStripMenuItem
             // 
@@ -123,13 +144,35 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 20;
+            this.trackBar1.Location = new System.Drawing.Point(26, 775);
+            this.trackBar1.Maximum = 255;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(678, 45);
+            this.trackBar1.TabIndex = 2;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(710, 775);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(826, 778);
+            this.ClientSize = new System.Drawing.Size(826, 832);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -138,6 +181,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,6 +199,10 @@
         private System.Windows.Forms.ToolStripMenuItem averageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autocontrastToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отменаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem бинаризацияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem точечнаяToolStripMenuItem;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
