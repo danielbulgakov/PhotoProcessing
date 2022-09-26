@@ -54,7 +54,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="lab2\GlobalBinarization.cs" />
+    <Compile Include="lab2\Global.cs" />
+    <Compile Include="lab2\GlobalThreshold.cs" />
     <Compile Include="lab1\Grayscale.cs" />
     <Compile Include="lab2\Niblack.cs" />
     <Compile Include="Program.cs" />

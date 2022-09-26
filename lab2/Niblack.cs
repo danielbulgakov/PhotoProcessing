@@ -48,7 +48,6 @@ namespace Filters
             int intesitySum = 0; // сумма яркостей
             int resultI; // результат нахождения среднего
 
-            int newResult = 0; // новая сумма яркостей
             int deviation; // результат нахождения отклонения 
 
             for (int l = -radius; l <= radius; l++)
@@ -63,6 +62,7 @@ namespace Filters
                 }
 
             resultI = (int)(intesitySum / matrixSize);
+            intesitySum = 0;
 
             for (int l = -radius; l <= radius; l++)
                 for (int k = -radius; k <= radius; k++)
@@ -71,11 +71,11 @@ namespace Filters
                     int idY = clamp(y + l, 0, sourceImage.Height - 1);
                     Color neighborColor = sourceImage.GetPixel(idX, idY);
 
-                    newResult += (int)Math.Pow(neighborColor.R - resultI, 2);
+                    intesitySum += (int)Math.Pow(neighborColor.R - resultI, 2);
 
                 }
 
-            deviation = (int)Math.Sqrt(newResult / matrixSize);
+            deviation = (int)Math.Sqrt(intesitySum / matrixSize);
 
             byte T = (byte)(resultI + (byte)(constant * deviation));
             

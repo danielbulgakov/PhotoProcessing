@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Filters
 {
-    internal class GlobalBinarization
+    internal class GlobalThreshold
     {
         public static Bitmap Execute(Bitmap sourceImage, int value)
         {

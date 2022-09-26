@@ -38,11 +38,12 @@
             this.autocontrastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.бинаризацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.точечнаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ниблэкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отменаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.ниблэкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.globalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -119,7 +120,8 @@
             // 
             this.бинаризацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.точечнаяToolStripMenuItem,
-            this.ниблэкToolStripMenuItem});
+            this.ниблэкToolStripMenuItem,
+            this.globalToolStripMenuItem});
             this.бинаризацияToolStripMenuItem.Name = "бинаризацияToolStripMenuItem";
             this.бинаризацияToolStripMenuItem.Size = new System.Drawing.Size(117, 25);
             this.бинаризацияToolStripMenuItem.Text = "Бинаризация";
@@ -127,9 +129,16 @@
             // точечнаяToolStripMenuItem
             // 
             this.точечнаяToolStripMenuItem.Name = "точечнаяToolStripMenuItem";
-            this.точечнаяToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
-            this.точечнаяToolStripMenuItem.Text = "Точечная(Глобальная)";
+            this.точечнаяToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            this.точечнаяToolStripMenuItem.Text = "Точечная(Глобальный порог)";
             this.точечнаяToolStripMenuItem.Click += new System.EventHandler(this.globalToolStripMenuItem_Click);
+            // 
+            // ниблэкToolStripMenuItem
+            // 
+            this.ниблэкToolStripMenuItem.Name = "ниблэкToolStripMenuItem";
+            this.ниблэкToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            this.ниблэкToolStripMenuItem.Text = " Ниблэк";
+            this.ниблэкToolStripMenuItem.Click += new System.EventHandler(this.niblackToolStripMenuItem_Click);
             // 
             // отменаToolStripMenuItem
             // 
@@ -166,12 +175,12 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "0";
             // 
-            // ниблэкToolStripMenuItem
+            // globalToolStripMenuItem
             // 
-            this.ниблэкToolStripMenuItem.Name = "ниблэкToolStripMenuItem";
-            this.ниблэкToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
-            this.ниблэкToolStripMenuItem.Text = " Ниблэк";
-            this.ниблэкToolStripMenuItem.Click += new System.EventHandler(this.niblackToolStripMenuItem_Click);
+            this.globalToolStripMenuItem.Name = "globalToolStripMenuItem";
+            this.globalToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            this.globalToolStripMenuItem.Text = "Глобальная(Гистограмма)";
+            this.globalToolStripMenuItem.Click += new System.EventHandler(this.globalToolStripMenuItem_Click_1);
             // 
             // Form1
             // 
@@ -213,6 +222,7 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem ниблэкToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem globalToolStripMenuItem;
     }
 }
 

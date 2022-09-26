@@ -111,7 +111,7 @@ namespace lab1
             if (ImageIsNull()) return;
             prevImage = new Bitmap(pictureBox1.Image);
             Cursor.Current = Cursors.WaitCursor;
-            this.pictureBox1.Image = Filters.GlobalBinarization.Execute((Bitmap)pictureBox1.Image, this.trackBar1.Value);
+            this.pictureBox1.Image = Filters.GlobalThreshold.Execute((Bitmap)pictureBox1.Image, this.trackBar1.Value);
             Cursor.Current = Cursors.Default;
         }
 
@@ -121,6 +121,15 @@ namespace lab1
             prevImage = new Bitmap(pictureBox1.Image);
             Cursor.Current = Cursors.WaitCursor;
             this.pictureBox1.Image = Filters.Niblack.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void globalToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = Filters.Global.Execute((Bitmap)pictureBox1.Image);
             Cursor.Current = Cursors.Default;
         }
 
