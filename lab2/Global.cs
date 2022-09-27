@@ -20,23 +20,55 @@ namespace Filters
             int[] hist = CalculateHistogram(sourceImage);
 
             // Отсечь 5% от мин и макс пикселей.
-            int min = hist.Where(x => x != 0).DefaultIfEmpty().Min();
-            //hist[Array.IndexOf(hist, min)] = (int)(min * 0.95);
-            int max = hist.Where(x => x != 0).DefaultIfEmpty().Max();
-            //hist[Array.IndexOf(hist, max)] = (int)(max * 0.95);
 
-            int mid = max - min;
+            int histSum = hist.Sum();
+            int cut = (int)(histSum * 0.05);
+            
+            for (int i = 0; i < 255; i++)
+            {
+                if (hist[i] < cut)
+                {
+                    cut -= hist[i];
+                    hist[i] = 0;
+                }
+                else
+                {
+                    hist[i] -= cut;
+                }
+                if (cut == 0) break;
+                
+            }
 
+            cut = (int)(histSum * 0.05);
+
+            for (int i = 255; i < 0; i--)
+            {
+                if (hist[i] < cut)
+                {
+                    cut -= hist[i];
+                    hist[i] = 0;
+                }
+                else
+                {
+                    hist[i] -= cut;
+                }
+                if (cut == 0) break;
+
+            }
 
             // Найти взвешенное среднее
             int t = 0;
+
+            int weight = 0;
             for (int i = 0; i < 255; i++)
             {
                 if (hist[i] == 0) continue;
-                t += (int) (hist[i] * i / hist.Sum());
+
+                weight += hist[i] * i;
             }
 
-
+            // Вычисление порога
+            t = (int)(weight / hist.Sum());
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
@@ -66,15 +98,7 @@ namespace Filters
             return hist;
         }
 
-        public static byte clamp(float value, float min, float max)
-        {
-            return (byte)(Math.Min(Math.Max(min, value), max));
-        }
-
-        public static int clamp(int value, int min, int max)
-        {
-            return (int)(Math.Min(Math.Max(min, value), max));
-        }
+        
 
     
     }
