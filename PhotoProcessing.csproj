@@ -85,5 +85,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lab3\Compare\" />
+    <Folder Include="lab3\ToDenoise\" />
+    <Folder Include="lab3\ToNoise\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
