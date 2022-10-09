@@ -35,31 +35,31 @@ namespace ImageCompare
             return (1 - ssim) / 2;
         }
 
-        public static float ComputeMean(Bitmap image)
+        private static float ComputeMean(Bitmap image)
         {
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
                 for (int j = 0; j < image.Width; j++)
                 {
                     Color color = image.GetPixel(j, i);
-                    sum += GetValue(color);
+                    sum += GetBrightness(color);
                 }
             return sum / (image.Width * image.Height);
         }
 
-        public static float ComputeVariance(Bitmap image, float mean)
+        private static float ComputeVariance(Bitmap image, float mean)
         {
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
                 for (int j = 0; j < image.Width; j++)
                 {
                     Color color = image.GetPixel(j, i);
-                    sum += (float)Math.Pow((GetValue(color) - mean), 2);
+                    sum += (float)Math.Pow((GetBrightness(color) - mean), 2);
                 }
             return (float)Math.Sqrt(sum / ((image.Width * image.Height - 1)));
         }
 
-        public static float ComputeCovariance(Bitmap image1, Bitmap image2, float var1, float var2)
+        private static float ComputeCovariance(Bitmap image1, Bitmap image2, float var1, float var2)
         {
             float sum = 0f;
             for (int i = 0; i < image1.Height; i++)
@@ -67,12 +67,12 @@ namespace ImageCompare
                 {
                     Color color1 = image1.GetPixel(j, i);
                     Color color2 = image2.GetPixel(j, i);
-                    sum += (GetValue(color1) - var1) * (GetValue(color2) - var2);
+                    sum += (GetBrightness(color1) - var1) * (GetBrightness(color2) - var2);
                 }
             return (float)Math.Sqrt(sum / ((image1.Width * image1.Height - 1)));
         }
 
-        public static float GetValue(Color color)
+        private static float GetBrightness(Color color)
         {
             return (byte)(.299 * color.R + .587 * color.G + .114 * color.B);
         }
