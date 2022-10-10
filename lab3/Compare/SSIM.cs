@@ -24,7 +24,7 @@ namespace ImageCompare
             float comVar = ComputeVariance(compareImage, comM);
             float perfVar = ComputeVariance(perfImage, perfM);
 
-            float covar = ComputeCovariance(compareImage, perfImage, comVar, perfVar);
+            float covar = ComputeCovariance(compareImage, perfImage, comM, perfM);
 
             float up = (2 * comM * perfM + c1) * (2 * covar + c2);
             float down = (comM * comM + perfM * perfM + c1) *
@@ -32,7 +32,7 @@ namespace ImageCompare
 
             float ssim =  up / down;
 
-            return (1 - ssim) / 2;
+            return ssim;
         }
 
         private static float ComputeMean(Bitmap image)
@@ -69,7 +69,7 @@ namespace ImageCompare
                     Color color2 = image2.GetPixel(j, i);
                     sum += (GetBrightness(color1) - var1) * (GetBrightness(color2) - var2);
                 }
-            return (float)Math.Sqrt(sum / ((image1.Width * image1.Height - 1)));
+            return sum / ((image1.Width * image1.Height - 1));
         }
 
         private static float GetBrightness(Color color)

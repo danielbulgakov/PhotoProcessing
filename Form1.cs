@@ -138,5 +138,47 @@ namespace lab1
             this.label1.Text = this.trackBar1.Value.ToString();
         }
 
+        private void pSNRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            Cursor.Current = Cursors.WaitCursor;
+            MessageBox.Show(ImageCompare.PSNR.Execute((Bitmap)pictureBox1.Image, prevImage).ToString());
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void sSIMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            Cursor.Current = Cursors.WaitCursor;
+            MessageBox.Show(ImageCompare.SSIM.Execute((Bitmap)pictureBox1.Image, prevImage).ToString());
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void saltAndPaperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = NoiseModels.SaltAndPaper.Execute((Bitmap)pictureBox1.Image, 111, 25);
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void gaussianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = NoiseModels.Gaussian.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void uniformToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = NoiseModels.Uniform.Execute((Bitmap)pictureBox1.Image, 240, 100);
+            Cursor.Current = Cursors.Default;
+        }
     }
 }

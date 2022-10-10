@@ -15,7 +15,8 @@ namespace ImageCompare
 
             float mse = ComputeMSE(compareImage, perfImage);
 
-            return (float)(20 * Math.Log10(255f / Math.Sqrt(mse)));
+            float psnr = (float)(20 * Math.Log10(255f / Math.Sqrt(mse)));
+            return psnr;
             
         }
 
@@ -35,8 +36,13 @@ namespace ImageCompare
 
         private static float CompareColors (Color a, Color b)
         {
-            return (float)(Math.Pow(a.R - b.R, 2) + Math.Pow(a.G - b.G, 2) + Math.Pow(a.B - b.B, 2)) / 3f; 
+            return (float)Math.Pow(GetBrightness(a) - GetBrightness(b),2); 
         }
-        
+
+        private static float GetBrightness(Color color)
+        {
+            return (byte)(.299 * color.R + .587 * color.G + .114 * color.B);
+        }
+
     }
 }

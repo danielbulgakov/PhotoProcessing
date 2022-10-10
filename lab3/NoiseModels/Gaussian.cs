@@ -9,15 +9,19 @@ namespace NoiseModels
 {
     internal class Gaussian
     {
-        public static Bitmap Execute(Bitmap sourceImage, byte upBorder = 255, byte downBorder = 0)
+        public static Bitmap Execute(Bitmap sourceImage)
         {
             Bitmap resImage = new Bitmap(sourceImage);
+
+
+            var mean = ComputeMean(resImage);
+            var mse = ComputeMSE(resImage, mean);
 
             for (int y = 0; y < sourceImage.Height; y++)
                 for (int x = 0; x < sourceImage.Width; x++)
                 {
                     Color color = sourceImage.GetPixel(x, y);
-                    resImage.SetPixel(x, y, CalculateColor(color, upBorder, downBorder));
+                    resImage.SetPixel(x, y, CalculateColor(color, mean, mse));
                 }
             return resImage;
         }
