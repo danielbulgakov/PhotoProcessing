@@ -54,6 +54,8 @@
             this.убратьШумToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.арифметическоеСреднееToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.геометрическоеСреднеееToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.медианныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.гауссToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -253,7 +255,9 @@
             // 
             this.убратьШумToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.арифметическоеСреднееToolStripMenuItem,
-            this.геометрическоеСреднеееToolStripMenuItem});
+            this.геометрическоеСреднеееToolStripMenuItem,
+            this.медианныйToolStripMenuItem,
+            this.гауссToolStripMenuItem});
             this.убратьШумToolStripMenuItem.Name = "убратьШумToolStripMenuItem";
             this.убратьШумToolStripMenuItem.Size = new System.Drawing.Size(108, 25);
             this.убратьШумToolStripMenuItem.Text = "Убрать шум";
@@ -271,6 +275,20 @@
             this.геометрическоеСреднеееToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.геометрическоеСреднеееToolStripMenuItem.Text = "Геометрическое среднеее";
             this.геометрическоеСреднеееToolStripMenuItem.Click += new System.EventHandler(this.geometricMean);
+            // 
+            // медианныйToolStripMenuItem
+            // 
+            this.медианныйToolStripMenuItem.Name = "медианныйToolStripMenuItem";
+            this.медианныйToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.медианныйToolStripMenuItem.Text = "Медианный";
+            this.медианныйToolStripMenuItem.Click += new System.EventHandler(this.медианныйToolStripMenuItem_Click);
+            // 
+            // гауссToolStripMenuItem
+            // 
+            this.гауссToolStripMenuItem.Name = "гауссToolStripMenuItem";
+            this.гауссToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.гауссToolStripMenuItem.Text = "Гаусс";
+            this.гауссToolStripMenuItem.Click += new System.EventHandler(this.gauss);
             // 
             // Form1
             // 
@@ -323,6 +341,8 @@
         private System.Windows.Forms.ToolStripMenuItem убратьШумToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem арифметическоеСреднееToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem геометрическоеСреднеееToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem медианныйToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem гауссToolStripMenuItem;
     }
 }
 

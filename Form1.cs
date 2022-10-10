@@ -198,5 +198,23 @@ namespace lab1
             this.pictureBox1.Image = DenoiseModel.GeometricMean.Execute((Bitmap)pictureBox1.Image);
             Cursor.Current = Cursors.Default;
         }
+
+        private void медианныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = DenoiseModel.Median.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void gauss(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = DenoiseModel.Gauss.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
     }
 }
