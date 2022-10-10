@@ -180,5 +180,23 @@ namespace lab1
             this.pictureBox1.Image = NoiseModels.Uniform.Execute((Bitmap)pictureBox1.Image, 255, 50);
             Cursor.Current = Cursors.Default;
         }
+
+        private void ariphmeticMean(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = DenoiseModel.AriphmeticMean.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void geometricMean(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = DenoiseModel.GeometricMean.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
     }
 }

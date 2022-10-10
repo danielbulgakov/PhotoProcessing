@@ -60,6 +60,8 @@
     <Compile Include="lab2\Niblack.cs" />
     <Compile Include="lab3\Compare\PSNR.cs" />
     <Compile Include="lab3\Compare\SSIM.cs" />
+    <Compile Include="lab3\DenoiseModel\AriphmeticMean.cs" />
+    <Compile Include="lab3\DenoiseModel\GeometricMean.cs" />
     <Compile Include="lab3\NoiseModels\RandomGenerator\DistributedModel.cs" />
     <Compile Include="lab3\NoiseModels\Gaussian.cs" />
     <Compile Include="lab3\NoiseModels\SaltAndPaper.cs" />
@@ -91,8 +93,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="lab3\DenoiseModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
