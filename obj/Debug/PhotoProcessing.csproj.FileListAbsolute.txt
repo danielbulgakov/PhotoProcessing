@@ -9,3 +9,14 @@ D:\Study\2022\PhotoProcessing\obj\Debug\PhotoProcessing.csproj.GenerateResource.
 D:\Study\2022\PhotoProcessing\obj\Debug\PhotoProcessing.csproj.CoreCompileInputs.cache
 D:\Study\2022\PhotoProcessing\obj\Debug\lab1.exe
 D:\Study\2022\PhotoProcessing\obj\Debug\lab1.pdb
+C:\Study\PhotoProcessing\bin\Debug\lab1.exe.config
+C:\Study\PhotoProcessing\bin\Debug\lab1.exe
+C:\Study\PhotoProcessing\bin\Debug\lab1.pdb
+C:\Study\PhotoProcessing\obj\Debug\PhotoProcessing.csproj.AssemblyReference.cache
+C:\Study\PhotoProcessing\obj\Debug\PhotoProcessing.csproj.SuggestedBindingRedirects.cache
+C:\Study\PhotoProcessing\obj\Debug\lab1.Form1.resources
+C:\Study\PhotoProcessing\obj\Debug\lab1.Properties.Resources.resources
+C:\Study\PhotoProcessing\obj\Debug\PhotoProcessing.csproj.GenerateResource.cache
+C:\Study\PhotoProcessing\obj\Debug\PhotoProcessing.csproj.CoreCompileInputs.cache
+C:\Study\PhotoProcessing\obj\Debug\lab1.exe
+C:\Study\PhotoProcessing\obj\Debug\lab1.pdb

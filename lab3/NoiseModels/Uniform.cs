@@ -7,19 +7,24 @@ using System.Threading.Tasks;
 
 namespace NoiseModels
 {
-    internal class Uniform
+    internal class Uniform : DistributedModel
     {
 
         public static Bitmap Execute(Bitmap sourceImage, byte upBorder = 255, byte downBorder = 0)
         {
             Bitmap resImage = new Bitmap(sourceImage);
 
-            for (int y = 0; y < sourceImage.Height; y++)
-                for (int x = 0; x < sourceImage.Width; x++)
-                {
-                    Color color = sourceImage.GetPixel(x, y);
-                    resImage.SetPixel(x, y, CalculateColor(color, upBorder, downBorder));
-                }
+            const float p = 0.8f;
+            int noisePixels = 0;
+            while (noisePixels < sourceImage.Height * sourceImage.Width * p)
+            {
+                var pos = GetNextRandPixel(sourceImage.Width, sourceImage.Height);
+                noisePixels++;
+                Color color = sourceImage.GetPixel(pos.Item1, pos.Item2);
+                resImage.SetPixel(pos.Item1, pos.Item2, CalculateColor(color, upBorder, downBorder));
+            }
+
+            
             return resImage;
         }
 

@@ -60,6 +60,7 @@
     <Compile Include="lab2\Niblack.cs" />
     <Compile Include="lab3\Compare\PSNR.cs" />
     <Compile Include="lab3\Compare\SSIM.cs" />
+    <Compile Include="lab3\NoiseModels\RandomGenerator\DistributedModel.cs" />
     <Compile Include="lab3\NoiseModels\Gaussian.cs" />
     <Compile Include="lab3\NoiseModels\SaltAndPaper.cs" />
     <Compile Include="lab3\NoiseModels\Uniform.cs" />

@@ -177,7 +177,7 @@ namespace lab1
             if (ImageIsNull()) return;
             prevImage = new Bitmap(pictureBox1.Image);
             Cursor.Current = Cursors.WaitCursor;
-            this.pictureBox1.Image = NoiseModels.Uniform.Execute((Bitmap)pictureBox1.Image, 240, 100);
+            this.pictureBox1.Image = NoiseModels.Uniform.Execute((Bitmap)pictureBox1.Image, 255, 50);
             Cursor.Current = Cursors.Default;
         }
     }
