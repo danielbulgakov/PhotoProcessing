@@ -26,8 +26,8 @@ namespace ImageCompare
             for (int i = 0; i < perfImage.Height; i++)
                 for (int j = 0; j < perfImage.Width; j++)
                 {
-                    Color perfColor = perfImage.GetPixel(i, j);
-                    Color compareColor = compareImage.GetPixel(i, j);
+                    Color perfColor = perfImage.GetPixel(j, i);
+                    Color compareColor = compareImage.GetPixel(j, i);
                     sum += CompareColors(compareColor, perfColor);
                 }
             return sum / (compareImage.Width * compareImage.Height);
