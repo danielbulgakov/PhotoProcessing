@@ -64,6 +64,8 @@
     <Compile Include="lab3\DenoiseModel\Gauss.cs" />
     <Compile Include="lab3\DenoiseModel\GeometricMean.cs" />
     <Compile Include="lab3\DenoiseModel\Median.cs" />
+    <Compile Include="lab3\DenoiseModel\Minimum.cs" />
+    <Compile Include="lab3\NoiseModels\Raileth.cs" />
     <Compile Include="lab3\NoiseModels\RandomGenerator\DistributedModel.cs" />
     <Compile Include="lab3\NoiseModels\Gaussian.cs" />
     <Compile Include="lab3\NoiseModels\SaltAndPaper.cs" />
