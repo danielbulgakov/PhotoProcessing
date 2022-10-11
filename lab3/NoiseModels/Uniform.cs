@@ -11,50 +11,46 @@ namespace NoiseModels
 
     internal class Uniform : DistributedModel
     {
-        static int a = 64;
-        static int b = 32;
+        static double a = 32;
+        static double b = 64;
 
-        static double[] uniform = new double[256];
-        static double sum = 0;
-        static int size;
-        static byte[] noise;
 
-        public static Bitmap Execute(Bitmap sourceImage, byte upBorder = 255, byte downBorder = 0)
+        public static Bitmap Execute(Bitmap sourceImage)
         {
-            Bitmap resImage = new Bitmap(sourceImage);
-            size = sourceImage.Width * sourceImage.Height;
-            noise = new byte[size];
+            int size = sourceImage.Width * sourceImage.Height;
+            var uniform = ComputeUniform(size);
+            var noise = ComputeNoise(uniform, size);
 
-            
+            var resImage = new Bitmap(sourceImage);
+
             for (int y = 0; y < sourceImage.Height; y++)
                 for (int x = 0; x < sourceImage.Width; x++)
                 {
                     Color color = sourceImage.GetPixel(x, y);
-                    int add = GetBrightness(color) + noise[sourceImage.Width * y + x];
-                    byte v = clamp(GetBrightness(color) + add, 0, 255);
-                    Color newColor = Color.FromArgb(v,v,v);
-                    resImage.SetPixel(x, y, newColor);
+                    var newValue = clamp(GetBrightness(color) + 
+                        noise[sourceImage.Width * y + x], 0 , 255);
+
+
+                    resImage.SetPixel(x, y, Color.FromArgb(newValue, newValue, newValue));
 
                 }
 
+            var hist = CalculateHistogram(resImage);
 
             return resImage;
         }
 
-        public static byte clamp(float value, float min, float max)
+        private static float[] ComputeUniform(int size)
         {
-            return (byte)(Math.Min(Math.Max(min, value), max));
-        }
+            var uniform = new float[256];
+            float sum = 0f;
 
-
-        private static void ComputeUniform()
-        {
             for (int i = 0; i < 256; i++)
             {
-                double step = (double)i;
+                float step = i;
                 if (step >= a && step <= b)
                 {
-                    uniform[i] = (double)(1 / (b - a));
+                    uniform[i] = (1 / (float)(b - a));
                 }
                 else
                 {
@@ -62,18 +58,23 @@ namespace NoiseModels
                 }
                 sum += uniform[i];
             }
+
             for (int i = 0; i < 256; i++)
             {
                 uniform[i] /= sum;
                 uniform[i] *= size;
                 uniform[i] = (int)Math.Floor(uniform[i]);
             }
+
+
+            return uniform;
         }
 
-        private static void ComputeNoise()
+        private static byte[] ComputeNoise(float[] uniform, int size)
         {
-            Random rnd = new Random();
+            Random random = new Random();
             int count = 0;
+            var noise = new byte[size]; 
             for (int i = 0; i < 256; i++)
             {
                 for (int j = 0; j < (int)uniform[i]; j++)
@@ -88,17 +89,18 @@ namespace NoiseModels
                 noise[count + i] = 0;
             }
 
-            noise = noise.OrderBy(x => rnd.Next()).ToArray();
+            noise = noise.OrderBy(x => random.Next()).ToArray();
+            return noise;
         }
 
-        public static Color CalculateColor(Color color, byte up, byte down)
+        public static byte clamp(float value, float min, float max)
         {
-            if (GetBrightness(color) >= down &&
-                GetBrightness(color) <= up)
-                return Color.FromArgb((byte)(1 / up - down), (byte)(1 / up - down), (byte)(1 / up - down));
-
-            return Color.Black;
+            return (byte)(Math.Min(Math.Max(min, value), max));
         }
+
+
+
+
 
         public static byte GetBrightness(Color color)
         {
