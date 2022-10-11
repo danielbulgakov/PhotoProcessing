@@ -154,23 +154,7 @@ namespace lab1
             Cursor.Current = Cursors.Default;
         }
 
-        private void saltAndPaperToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ImageIsNull()) return;
-            prevImage = new Bitmap(pictureBox1.Image);
-            Cursor.Current = Cursors.WaitCursor;
-            this.pictureBox1.Image = NoiseModels.SaltAndPaper.Execute((Bitmap)pictureBox1.Image, 111, 25);
-            Cursor.Current = Cursors.Default;
-        }
 
-        private void gaussianToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ImageIsNull()) return;
-            prevImage = new Bitmap(pictureBox1.Image);
-            Cursor.Current = Cursors.WaitCursor;
-            this.pictureBox1.Image = NoiseModels.Gaussian.Execute((Bitmap)pictureBox1.Image);
-            Cursor.Current = Cursors.Default;
-        }
 
         private void uniformToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -178,6 +162,15 @@ namespace lab1
             prevImage = new Bitmap(pictureBox1.Image);
             Cursor.Current = Cursors.WaitCursor;
             this.pictureBox1.Image = NoiseModels.Uniform.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void railethToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = NoiseModels.Raileth.Execute((Bitmap)pictureBox1.Image);
             Cursor.Current = Cursors.Default;
         }
 
@@ -216,5 +209,7 @@ namespace lab1
             this.pictureBox1.Image = DenoiseModel.Gauss.Execute((Bitmap)pictureBox1.Image);
             Cursor.Current = Cursors.Default;
         }
+
+
     }
 }
