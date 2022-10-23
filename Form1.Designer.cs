@@ -45,18 +45,19 @@
             this.pSNRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sSIMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.шумToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saltAndPaperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gaussianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uniformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.railethToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.убратьШумToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.арифметическоеСреднееToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.геометрическоеСреднеееToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.медианныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.гауссToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.минимальныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.railethToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.инструментыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.гистограммаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -71,7 +72,8 @@
             this.отменаToolStripMenuItem,
             this.сравнениеToolStripMenuItem,
             this.шумToolStripMenuItem,
-            this.убратьШумToolStripMenuItem});
+            this.убратьШумToolStripMenuItem,
+            this.инструментыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(826, 28);
@@ -196,30 +198,25 @@
             // шумToolStripMenuItem
             // 
             this.шумToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saltAndPaperToolStripMenuItem,
-            this.gaussianToolStripMenuItem,
             this.uniformToolStripMenuItem,
             this.railethToolStripMenuItem});
             this.шумToolStripMenuItem.Name = "шумToolStripMenuItem";
             this.шумToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.шумToolStripMenuItem.Text = "Шум";
             // 
-            // saltAndPaperToolStripMenuItem
-            // 
-            this.saltAndPaperToolStripMenuItem.Name = "saltAndPaperToolStripMenuItem";
-            this.saltAndPaperToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            // 
-            // gaussianToolStripMenuItem
-            // 
-            this.gaussianToolStripMenuItem.Name = "gaussianToolStripMenuItem";
-            this.gaussianToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            // 
             // uniformToolStripMenuItem
             // 
             this.uniformToolStripMenuItem.Name = "uniformToolStripMenuItem";
-            this.uniformToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.uniformToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.uniformToolStripMenuItem.Text = "Uniform";
             this.uniformToolStripMenuItem.Click += new System.EventHandler(this.uniformToolStripMenuItem_Click);
+            // 
+            // railethToolStripMenuItem
+            // 
+            this.railethToolStripMenuItem.Name = "railethToolStripMenuItem";
+            this.railethToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.railethToolStripMenuItem.Text = "Raileth";
+            this.railethToolStripMenuItem.Click += new System.EventHandler(this.railethToolStripMenuItem_Click);
             // 
             // убратьШумToolStripMenuItem
             // 
@@ -227,7 +224,8 @@
             this.арифметическоеСреднееToolStripMenuItem,
             this.геометрическоеСреднеееToolStripMenuItem,
             this.медианныйToolStripMenuItem,
-            this.гауссToolStripMenuItem});
+            this.гауссToolStripMenuItem,
+            this.минимальныйToolStripMenuItem});
             this.убратьШумToolStripMenuItem.Name = "убратьШумToolStripMenuItem";
             this.убратьШумToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
             this.убратьШумToolStripMenuItem.Text = "Убрать шум";
@@ -260,6 +258,13 @@
             this.гауссToolStripMenuItem.Text = "Гаусс";
             this.гауссToolStripMenuItem.Click += new System.EventHandler(this.gauss);
             // 
+            // минимальныйToolStripMenuItem
+            // 
+            this.минимальныйToolStripMenuItem.Name = "минимальныйToolStripMenuItem";
+            this.минимальныйToolStripMenuItem.Size = new System.Drawing.Size(261, 24);
+            this.минимальныйToolStripMenuItem.Text = "Минимальный";
+            this.минимальныйToolStripMenuItem.Click += new System.EventHandler(this.минимальныйToolStripMenuItem_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(14, 45);
@@ -288,12 +293,20 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "0";
             // 
-            // railethToolStripMenuItem
+            // инструментыToolStripMenuItem
             // 
-            this.railethToolStripMenuItem.Name = "railethToolStripMenuItem";
-            this.railethToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.railethToolStripMenuItem.Text = "Raileth";
-            this.railethToolStripMenuItem.Click += new System.EventHandler(this.railethToolStripMenuItem_Click);
+            this.инструментыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.гистограммаToolStripMenuItem});
+            this.инструментыToolStripMenuItem.Name = "инструментыToolStripMenuItem";
+            this.инструментыToolStripMenuItem.Size = new System.Drawing.Size(115, 24);
+            this.инструментыToolStripMenuItem.Text = "Инструменты";
+            // 
+            // гистограммаToolStripMenuItem
+            // 
+            this.гистограммаToolStripMenuItem.Name = "гистограммаToolStripMenuItem";
+            this.гистограммаToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.гистограммаToolStripMenuItem.Text = "Гистограмма";
+            this.гистограммаToolStripMenuItem.Click += new System.EventHandler(this.гистограммаToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -340,8 +353,6 @@
         private System.Windows.Forms.ToolStripMenuItem pSNRToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sSIMToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem шумToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saltAndPaperToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gaussianToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uniformToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem убратьШумToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem арифметическоеСреднееToolStripMenuItem;
@@ -349,6 +360,9 @@
         private System.Windows.Forms.ToolStripMenuItem медианныйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem гауссToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem railethToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem минимальныйToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem инструментыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem гистограммаToolStripMenuItem;
     }
 }
 

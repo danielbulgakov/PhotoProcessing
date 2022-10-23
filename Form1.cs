@@ -1,4 +1,5 @@
-﻿using System;
+﻿using lab1.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tools;
 
 namespace lab1
 {
@@ -29,7 +31,8 @@ namespace lab1
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 imagePath = dialog.FileName;
-                prevImage = new Bitmap(imagePath);
+                if (prevImage == null)
+                    prevImage = new Bitmap(imagePath);
                 this.pictureBox1.Image = new Bitmap(imagePath);
 
             }
@@ -210,6 +213,21 @@ namespace lab1
             Cursor.Current = Cursors.Default;
         }
 
+        private void минимальныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            prevImage = new Bitmap(pictureBox1.Image);
+            Cursor.Current = Cursors.WaitCursor;
+            this.pictureBox1.Image = DenoiseModel.Minimum.Execute((Bitmap)pictureBox1.Image);
+            Cursor.Current = Cursors.Default;
+        }
 
+        private void гистограммаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageIsNull()) return;
+            Hist frame = new Hist(HistogramChart.GetHistogramArray((Bitmap)pictureBox1.Image));
+            frame.Show();
+            
+        }
     }
 }
