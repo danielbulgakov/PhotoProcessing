@@ -9,23 +9,24 @@ namespace DenoiseModel
 {
     internal class Gauss
     {
-        private static float[,] kernel = null;
+       
 
         public static Bitmap Execute(Bitmap sourceImage)
         {
             int width = sourceImage.Width;
             int height = sourceImage.Height;
             Bitmap resImage = new Bitmap(width, height);
+            
 
 
 
-
-            int radius = 3;
+            int radius = 1;
             int sigma = 2;
 
             int size = 2 * radius + 1;
-            kernel = new float[size, size];
+            float[,] kernel = new float[size, size];
             float norm = 0;
+
             for (int i = -radius; i <= radius; i++)
                 for (int j = -radius; j <= radius; j++)
                 {
@@ -39,7 +40,7 @@ namespace DenoiseModel
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
                 {
-                    Color Color = CalculateNewPixelColor(sourceImage, x, y);
+                    Color Color = CalculateNewPixelColor(sourceImage, kernel, x, y);
                     resImage.SetPixel(x, y, Color);
 
                 }
@@ -59,7 +60,7 @@ namespace DenoiseModel
             return (int)(Math.Min(Math.Max(min, value), max));
         }
 
-        public static Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        public static Color CalculateNewPixelColor(Bitmap sourceImage, float[,] kernel, int x, int y)
         {
             int radiusX = kernel.GetLength(0) / 2;
             int radiusY = kernel.GetLength(1) / 2;

@@ -12,7 +12,7 @@ namespace NoiseModels
     internal class Uniform
     {
         static double a = 32;
-        static double b = 64;
+        static double b = 120;
 
 
         public static Bitmap Execute(Bitmap sourceImage)
