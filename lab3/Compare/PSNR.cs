@@ -9,40 +9,32 @@ namespace ImageCompare
 {
     internal class PSNR
     {
+        private static float max = 0f;
+
         public static float Execute(Bitmap compareImage, Bitmap perfImage)
         {
             if (compareImage.Size != perfImage.Size) return -1;
 
             float mse = ComputeMSE(compareImage, perfImage);
+            Console.WriteLine("MSE = " + mse.ToString());
 
-            float psnr = (float)(20 * Math.Log10(255f / Math.Sqrt(mse)));
+            float psnr = (float)(20 * Math.Log10(max / (float)Math.Sqrt(mse)));
             return psnr;
             
         }
 
-        private static float ComputeMSE(Bitmap compareImage, Bitmap perfImage)
+        private static float ComputeMSE(Bitmap im1, Bitmap im2)
         {
             float sum = 0f;
-            for (int i = 0; i < perfImage.Height; i++)
-                for (int j = 0; j < perfImage.Width; j++)
-                {
-                    Color perfColor = perfImage.GetPixel(j, i);
-                    Color compareColor = compareImage.GetPixel(j, i);
-                    sum += CompareColors(compareColor, perfColor);
-                }
-            return sum / (compareImage.Width * compareImage.Height);
+            for (int i = 0; i < im1.Height; i++)
+                for (int j = 0; j < im1.Width; j++)
+                    sum += (float)Math.Pow((im1.GetPixel(i, j).R - im2.GetPixel(i, j).R), 2f);
 
+
+            return (sum / (float)(im1.Height * im1.Width));
         }
 
-        private static float CompareColors (Color a, Color b)
-        {
-            return (float)Math.Pow(GetBrightness(a) - GetBrightness(b),2); 
-        }
-
-        private static float GetBrightness(Color color)
-        {
-            return (byte)(.299 * color.R + .587 * color.G + .114 * color.B);
-        }
+       
 
     }
 }

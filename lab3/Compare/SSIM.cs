@@ -11,26 +11,24 @@ namespace ImageCompare
     {
         public static float Execute(Bitmap compareImage, Bitmap perfImage)
         {
-            const int L = 8; // bpp
-            const float k1 = 0.01f;
-            const float k2 = 0.03f;
+            float L = (float)(Math.Pow(2, 8) - 1f);
+            float k1 = 0.01f, k2 = 0.03f;
+            float c1 = (float)Math.Pow(k1 * L, 2);
+            float c2 = (float)Math.Pow(k2 * L, 2);
 
-            float c1 = (float)Math.Pow(L * k1, 2);
-            float c2 = (float)Math.Pow(L * k2, 2);
 
-            float comM = ComputeMean(compareImage);
-            float perfM = ComputeMean(perfImage);
+            float meanX = ComputeMean(perfImage), meanY = ComputeMean(compareImage);
+            float disX = ComputeDis(perfImage, meanX), disY = ComputeDis(compareImage, meanY);
+            float covXY = ComputeCov(perfImage, meanX, compareImage, meanY);
 
-            float comVar = ComputeVariance(compareImage, comM);
-            float perfVar = ComputeVariance(perfImage, perfM);
+            
+            float ssim, dssim;
 
-            float covar = ComputeCovariance(compareImage, perfImage, comM, perfM);
+            ssim = (2 * meanX * meanY + c1)*(2*covXY + c2) /
+                    (float)((Math.Pow(meanX, 2) + Math.Pow(meanY, 2) + c1) * 
+                    (Math.Pow(disX, 2) + Math.Pow(disY, 2) + c2)) ;
 
-            float up = (2 * comM * perfM + c1) * (2 * covar + c2);
-            float down = (comM * comM + perfM * perfM + c1) *
-                    (comVar * comVar + perfVar * perfVar + c2);
-
-            float ssim =  up / down;
+            dssim = (1 - ssim) / 2;
 
             return ssim;
         }
@@ -39,38 +37,30 @@ namespace ImageCompare
         {
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
-                for (int j = 0; j < image.Width; j++)
-                {
-                    Color color = image.GetPixel(j, i);
-                    sum += GetBrightness(color);
-                }
-            return sum / (image.Width * image.Height);
+                for (int j = 0; j < image.Width; j++) 
+                    sum += GetBrightness(image.GetPixel(i, j));
+            return (sum / (float)(image.Height * image.Width));
         }
 
-        private static float ComputeVariance(Bitmap image, float mean)
+        private static float ComputeDis(Bitmap image, float mean)
         {
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
                 for (int j = 0; j < image.Width; j++)
-                {
-                    Color color = image.GetPixel(j, i);
-                    sum += (float)Math.Pow((GetBrightness(color) - mean), 2);
-                }
-            return (float)Math.Sqrt(sum / ((image.Width * image.Height - 1)));
+                    sum += (float)Math.Pow(GetBrightness(image.GetPixel(i, j)) - mean, 2);
+            return (float)Math.Sqrt(sum / ((float)(image.Height * image.Width) - 1f));
         }
 
-        private static float ComputeCovariance(Bitmap image1, Bitmap image2, float var1, float var2)
+        private static float ComputeCov(Bitmap im1, float m1, Bitmap im2, float m2)
         {
             float sum = 0f;
-            for (int i = 0; i < image1.Height; i++)
-                for (int j = 0; j < image1.Width; j++)
-                {
-                    Color color1 = image1.GetPixel(j, i);
-                    Color color2 = image2.GetPixel(j, i);
-                    sum += (GetBrightness(color1) - var1) * (GetBrightness(color2) - var2);
-                }
-            return sum / ((image1.Width * image1.Height - 1));
+            for (int i = 0; i < im1.Height; i++)
+                for (int j = 0; j < im1.Width; j++)
+                    sum += (GetBrightness(im1.GetPixel(i, j)) - m1) * 
+                        (GetBrightness(im2.GetPixel(i, j)) - m2);
+            return (sum / ((float)(im1.Height * im1.Width) - 1f));
         }
+
 
         private static float GetBrightness(Color color)
         {
