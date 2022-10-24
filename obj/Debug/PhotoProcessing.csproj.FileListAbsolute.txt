@@ -21,3 +21,4 @@ C:\Study\PhotoProcessing\obj\Debug\PhotoProcessing.csproj.CoreCompileInputs.cach
 C:\Study\PhotoProcessing\obj\Debug\lab1.exe
 C:\Study\PhotoProcessing\obj\Debug\lab1.pdb
 D:\Study\2022\PhotoProcessing\obj\Debug\lab1.Tools.Hist.resources
+C:\Study\PhotoProcessing\obj\Debug\lab1.Tools.Hist.resources
