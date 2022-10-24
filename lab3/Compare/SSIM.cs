@@ -38,7 +38,7 @@ namespace ImageCompare
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
                 for (int j = 0; j < image.Width; j++) 
-                    sum += GetBrightness(image.GetPixel(i, j));
+                    sum += GetBrightness(image.GetPixel(j, i));
             return (sum / (float)(image.Height * image.Width));
         }
 
@@ -47,7 +47,7 @@ namespace ImageCompare
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
                 for (int j = 0; j < image.Width; j++)
-                    sum += (float)Math.Pow(GetBrightness(image.GetPixel(i, j)) - mean, 2);
+                    sum += (float)Math.Pow(GetBrightness(image.GetPixel(j, i)) - mean, 2);
             return (float)Math.Sqrt(sum / ((float)(image.Height * image.Width) - 1f));
         }
 
@@ -56,8 +56,8 @@ namespace ImageCompare
             float sum = 0f;
             for (int i = 0; i < im1.Height; i++)
                 for (int j = 0; j < im1.Width; j++)
-                    sum += (GetBrightness(im1.GetPixel(i, j)) - m1) * 
-                        (GetBrightness(im2.GetPixel(i, j)) - m2);
+                    sum += (GetBrightness(im1.GetPixel(j, i)) - m1) * 
+                        (GetBrightness(im2.GetPixel(j, i)) - m2);
             return (sum / ((float)(im1.Height * im1.Width) - 1f));
         }
 

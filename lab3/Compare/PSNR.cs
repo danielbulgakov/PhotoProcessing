@@ -32,7 +32,6 @@ namespace ImageCompare
                     sum += (float)Math.Pow((im1.GetPixel(j, i).R - im2.GetPixel(j, i).R), 2f);
                     sum += (float)Math.Pow((im1.GetPixel(j, i).G - im2.GetPixel(j, i).G), 2f);
                     sum += (float)Math.Pow((im1.GetPixel(j, i).B - im2.GetPixel(j, i).B), 2f);
-
                 }
 
 
