@@ -18,9 +18,14 @@ namespace Tools
                 for (int x = 0; x < image.Width; x++)
                 {
                     Color color = image.GetPixel(x, y);
-                    hist[color.R]++;
+                    hist[GetBrightness(color)]++;
                 }
             return hist;
+        }
+
+        public static byte GetBrightness(Color color)
+        {
+            return (byte)(.299 * color.R + .587 * color.G + .114 * color.B);
         }
     }
 }

@@ -22,12 +22,11 @@ namespace NoiseModels
                 for (int x = 0; x < sourceImage.Width; x++)
                 {
                     Color color = sourceImage.GetPixel(x, y);
-                    
+                    var newValue = clamp(GetBrightness(color) +
+                        noise[sourceImage.Width * y + x], 0, 255);
 
 
-                    resImage.SetPixel(x, y, Color.FromArgb(clamp(color.R + noise[sourceImage.Width * y + x], 0, 255),
-                        clamp(color.G + noise[sourceImage.Width * y + x], 0, 255),
-                        clamp(color.B + noise[sourceImage.Width * y + x], 0, 255)));
+                    resImage.SetPixel(x, y, Color.FromArgb(newValue, newValue, newValue));
 
                 }
 
