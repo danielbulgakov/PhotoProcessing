@@ -37,9 +37,13 @@ namespace ImageCompare
         {
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
-                for (int j = 0; j < image.Width; j++) 
-                    sum += GetBrightness(image.GetPixel(j, i));
-            return (sum / (float)(image.Height * image.Width));
+                for (int j = 0; j < image.Width; j++)
+                {
+                    sum += image.GetPixel(j, i).R;
+                    sum += image.GetPixel(j, i).G;
+                    sum += image.GetPixel(j, i).B;
+                } 
+            return (sum / (float)(image.Height * image.Width * 3));
         }
 
         private static float ComputeDis(Bitmap image, float mean)
@@ -47,8 +51,12 @@ namespace ImageCompare
             float sum = 0f;
             for (int i = 0; i < image.Height; i++)
                 for (int j = 0; j < image.Width; j++)
-                    sum += (float)Math.Pow(GetBrightness(image.GetPixel(j, i)) - mean, 2);
-            return (float)Math.Sqrt(sum / ((float)(image.Height * image.Width) - 1f));
+                {
+                    sum += (float)Math.Pow(image.GetPixel(j, i).R - mean, 2);
+                    sum += (float)Math.Pow(image.GetPixel(j, i).G - mean, 2);
+                    sum += (float)Math.Pow(image.GetPixel(j, i).B - mean, 2);
+                }
+            return (float)Math.Sqrt(sum / ((float)(image.Height * image.Width) - 1f) * 3);
         }
 
         private static float ComputeCov(Bitmap im1, float m1, Bitmap im2, float m2)
@@ -56,9 +64,12 @@ namespace ImageCompare
             float sum = 0f;
             for (int i = 0; i < im1.Height; i++)
                 for (int j = 0; j < im1.Width; j++)
-                    sum += (GetBrightness(im1.GetPixel(j, i)) - m1) * 
-                        (GetBrightness(im2.GetPixel(j, i)) - m2);
-            return (sum / ((float)(im1.Height * im1.Width) - 1f));
+                {
+                    sum += (im1.GetPixel(j, i).R - m1) * (im2.GetPixel(j, i).R - m2);
+                    sum += (im1.GetPixel(j, i).G - m1) * (im2.GetPixel(j, i).G - m2);
+                    sum += (im1.GetPixel(j, i).B - m1) * (im2.GetPixel(j, i).B - m2);
+                }
+            return (sum / ((float)(im1.Height * im1.Width) - 1f) * 3);
         }
 
 
