@@ -67,7 +67,7 @@
     <Compile Include="lab3\DenoiseModel\Median.cs" />
     <Compile Include="lab3\DenoiseModel\Minimum.cs" />
     <Compile Include="lab3\NoiseModels\Raileth.cs" />
-    <Compile Include="lab3\NoiseModels\RandomGenerator\DistributedModel.cs" />
+    <Compile Include="lab3\NoiseModels\Models\AdditiveModel.cs" />
     <Compile Include="lab3\NoiseModels\Uniform.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
