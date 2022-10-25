@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Management.Instrumentation;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,11 +11,14 @@ namespace NoiseModels
 {
     internal abstract class AdditiveModel
     {
+        static float[] uni;
+        static int[] uniint;
 
         public static Bitmap CalculateBitmap(Bitmap sourceImage, float[] uniform)
         {
             int size = sourceImage.Width * sourceImage.Height;
-
+            uni = new float[uniform.Length];
+            for (int i = 0; i < uniform.Length; i++) uni[i] = uniform[i];
             var noise = ComputeNoise(uniform, size);
 
             var resImage = new Bitmap(sourceImage);
@@ -37,18 +42,12 @@ namespace NoiseModels
 
         
 
-        protected static int[] CalculateHistogram(Bitmap image)
+        public static int[] CalculateHistogram()
         {
-            int[] hist = new int[256];
-
-            for (int y = 0; y < image.Height; y++)
-                for (int x = 0; x < image.Width; x++)
-                {
-                    Color color = image.GetPixel(x, y);
-                    hist[color.R]++;
-                }
-
-            return hist;
+            uniint = new int[uni.Length];
+            for (int i = 0; i < uni.Length; i++)
+                uniint[i] = (int)uni[i];
+            return uniint;
         }
 
 

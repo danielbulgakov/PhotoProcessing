@@ -1,4 +1,5 @@
 ﻿using lab1.Tools;
+using NoiseModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace lab1
     public partial class Form1 : Form
     {
         Bitmap prevImage;
+        Bitmap firstImage;
 
 
         public Form1()
@@ -33,6 +35,7 @@ namespace lab1
                 imagePath = dialog.FileName;
                 if (prevImage == null)
                     prevImage = new Bitmap(imagePath);
+                this.firstImage = new Bitmap(imagePath);
                 this.pictureBox1.Image = new Bitmap(imagePath);
 
             }
@@ -145,7 +148,7 @@ namespace lab1
         {
             if (ImageIsNull()) return;
             Cursor.Current = Cursors.WaitCursor;
-            MessageBox.Show(ImageCompare.PSNR.Execute((Bitmap)pictureBox1.Image, prevImage).ToString());
+            MessageBox.Show(ImageCompare.PSNR.Execute((Bitmap)pictureBox1.Image, firstImage).ToString());
             Cursor.Current = Cursors.Default;
         }
 
@@ -153,7 +156,7 @@ namespace lab1
         {
             if (ImageIsNull()) return;
             Cursor.Current = Cursors.WaitCursor;
-            MessageBox.Show(ImageCompare.SSIM.Execute((Bitmap)pictureBox1.Image, prevImage).ToString());
+            MessageBox.Show(ImageCompare.SSIM.Execute((Bitmap)pictureBox1.Image, firstImage).ToString());
             Cursor.Current = Cursors.Default;
         }
 
@@ -225,9 +228,14 @@ namespace lab1
         private void гистограммаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ImageIsNull()) return;
-            Hist frame = new Hist(HistogramChart.GetHistogramArray((Bitmap)pictureBox1.Image));
+            Hist frame = new Hist(AdditiveModel.CalculateHistogram());
             frame.Show();
             
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
